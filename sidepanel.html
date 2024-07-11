@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Reload AADL</title>
+  <link href="bootstrap.min.css" rel="stylesheet">
+  <link href="countdown.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+    }
+
+    .btn-custom {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .btn-custom.stop {
+      background-color: #FF5733;
+    }
+
+    .btn-custom:hover {
+      background-color: #45a049;
+    }
+
+    #status {
+      display: block;
+      margin-top: 10px;
+      text-align: center;
+      font-size: 12px;
+      color: #888;
+    }
+    .countdown-container1.reloading{
+      display: initial;
+    }
+      .countdown-container1{
+      display: none;
+    }
+    .loader,.loader.reloading.running{
+      display: none;
+    }
+    .loader.running{
+      display: block;
+    }
+    .reset-button {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #FF5733;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  width: 82px;
+}
+
+.reset-button:hover {
+  background-color: #E74C3C;
+}
+
+.reset-button i {
+  margin-right: 5px;
+}
+
+
+  </style>
+</head>
+<body> 
+    <button id="resetButton" class="btn btn-custom reset-button">
+       <i class="fa fa-trash"></i> Reset
+    </button>
+  <center>
+    <img class="img" src="alg.png" style="height: 50px;">
+  </center>
+  <h1>Auto Reload AADL</h1>
+  <form>
+    <div class="form-group">
+      <label for="A17">ولاية الإقامة</label>
+      <select name="A17" id="A17" class="form-control" title="الولاية المختارة عند التسجيل يجب أن تثبت بشهادة إقامة سارية المفعول">
+        <option selected="" value="">----------</option>
+        <option value="2">1-أدرار</option>
+        <option value="3">2-الشلف</option>
+        <option value="4">3-الأغواط</option>
+        <option value="5">4-أم البواقي</option>
+        <option value="6">5-باتنة</option>
+        <option value="7">6-بجاية</option>
+        <option value="8">7-بسكرة</option>
+        <option value="9">8-بشار</option>
+        <option value="10">9-البليدة</option>
+        <option value="11">10-البويرة</option>
+        <option value="12">11-تمنراست</option>
+        <option value="13">12-تبسة</option>
+        <option value="14">13-تلمسان</option>
+        <option value="15">14-تيارت</option>
+        <option value="16">15-تيزي وزو</option>
+        <option value="17">16-الجزائر</option>
+        <option value="18">17-الجلفة</option>
+        <option value="19">18-جيجل</option>
+        <option value="20">19-سطيف</option>
+        <option value="21">20-سعيدة</option>
+        <option value="22">21-سكيكدة</option>
+        <option value="23">22-سيدي بلعباس</option>
+        <option value="24">23-عنابة</option>
+        <option value="25">24-قالمة</option>
+        <option value="26">25-قسنطينة</option>
+        <option value="27">26-المدية</option>
+        <option value="28">27-مستغانم</option>
+        <option value="29">28-المسيلة</option>
+        <option value="30">29-معسكر</option>
+        <option value="31">30-ورقلة</option>
+        <option value="32">31-وهران</option>
+        <option value="33">32-البيض</option>
+        <option value="34">33-إليزي</option>
+        <option value="35">34-برج بوعريريج</option>
+        <option value="36">35-بومرداس</option>
+        <option value="37">36-الطارف</option>
+        <option value="38">37-تندوف</option>
+        <option value="39">38-تيسمسيلت</option>
+        <option value="40">39-الوادي</option>
+        <option value="41">40-خنشلة</option>
+        <option value="42">41-سوق أهراس</option>
+        <option value="43">42-تيبازة</option>
+        <option value="44">43-ميلة</option>
+        <option value="45">44-عين الدفلة</option>
+        <option value="46">45-النعامة</option>
+        <option value="47">46-عين تيموشنت</option>
+        <option value="48">47-غرداية</option>
+        <option value="49">48-غيليزان</option>
+        <option value="50">49-تيميمون</option>
+        <option value="51">50-برج باجي مختار</option>
+        <option value="52">51-أولاد جلال</option>
+        <option value="53">52-بني عباس</option>
+        <option value="54">53-إن صالح</option>
+        <option value="55">54-إن قزام</option>
+        <option value="56">55-توقرت</option>
+        <option value="57">56-جانت</option>
+        <option value="58">57-المغير</option>
+        <option value="59">58-المنيعة</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="nin">Enter NIN Number</label>
+      <input type="text" id="nin" class="form-control" placeholder="Enter NIN Number">
+    </div>
+    <div class="form-group">
+      <label for="nss">Enter NSS Number</label>
+      <input type="text" id="nss" class="form-control" placeholder="Enter NSS Number">
+    </div>
+    <div class="form-group">
+      <label for="tel">Enter No tel</label>
+      <input type="text" id="tel" class="form-control" placeholder="Enter No tel">
+    </div>
+    <button id="toggleButton" class="btn btn-custom">Start</button>
+    <span id="status">Status: Not Running</span>
+  </form>
+  <center class="loader">
+    <h3>LOADING</h3>
+    <div class="lds-ripple"><div></div><div></div></div>
+  </center>
+  <center class="countdown-container1">
+    <h3>RELOADING IN</h3>
+  <div
+  class="countdown-container"
+  data-duration="10"
+  data-transition="linear"
+  data-color="#c39fe0"
+  data-size="200"
+  data-position="center"
+></div>
+</center>
+  <script src="countdown.min.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
